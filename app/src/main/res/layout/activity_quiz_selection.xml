@@ -1,0 +1,28 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:gravity="center">
+
+    <Button
+        android:id="@+id/btnPakistanQuiz"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Pakistan Quiz"
+        android:textSize="18sp" />
+
+    <Button
+        android:id="@+id/btnGeneralKnowledgeQuiz"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="General Knowledge Quiz"
+        android:textSize="18sp" />
+
+    <Button
+        android:id="@+id/btnScienceQuiz"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Science Quiz"
+        android:textSize="18sp" />
+</LinearLayout>
