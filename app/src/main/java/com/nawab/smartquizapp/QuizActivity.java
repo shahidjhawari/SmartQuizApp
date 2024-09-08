@@ -14,36 +14,102 @@ public class QuizActivity extends AppCompatActivity {
     private String correctAnswer;
     private int currentQuestionIndex = 0;
     private int score = 0;
+    private String[] quizQuestions;
+    private String[][] quizOptions;
+    private String[] quizCorrectAnswers;
 
-    private String[] quizQuestions = {
-            "What is the capital of Pakistan?",
-            "When did Pakistan gain independence?",
-            "Who is the founder of Pakistan?",
-            "What is the national language of Pakistan?",
-            "Which is the largest province of Pakistan by area?",
-            "Who was the first Prime Minister of Pakistan?",
-            "Which city is known as the City of Lights?",
-            "What is the national animal of Pakistan?",
-            "Which river is the longest in Pakistan?",
-            "Which mountain is the highest in Pakistan?"
+    // Define arrays for different quizzes
+    private static final String[][] QUIZ_QUESTIONS = {
+            {   // Pakistan Quiz
+                    "What is the capital of Pakistan?",
+                    "When did Pakistan gain independence?",
+                    "Who is the founder of Pakistan?",
+                    "What is the national language of Pakistan?",
+                    "Which is the largest province of Pakistan by area?",
+                    "Who was the first Prime Minister of Pakistan?",
+                    "Which city is known as the City of Lights?",
+                    "What is the national animal of Pakistan?",
+                    "Which river is the longest in Pakistan?",
+                    "Which mountain is the highest in Pakistan?"
+            },
+            {   // General Knowledge Quiz
+                    "What is the capital of France?",
+                    "Who wrote 'To Kill a Mockingbird'?",
+                    "What is the smallest planet in our solar system?",
+                    "Which element has the chemical symbol 'O'?",
+                    "What is the hardest natural substance on Earth?",
+                    "Who painted the Mona Lisa?",
+                    "What is the longest river in the world?",
+                    "What year did the Titanic sink?",
+                    "Who developed the theory of relativity?",
+                    "What is the largest ocean on Earth?"
+            },
+            {   // Science Quiz
+                    "What is the chemical formula for water?",
+                    "What planet is known as the Red Planet?",
+                    "How many bones are there in the adult human body?",
+                    "What gas do plants use for photosynthesis?",
+                    "What is the speed of light?",
+                    "Who is known as the father of modern physics?",
+                    "What is the boiling point of water in Celsius?",
+                    "What is the largest organ in the human body?",
+                    "Which planet is closest to the Sun?",
+                    "What type of bond is formed between hydrogen and oxygen in water?"
+            }
     };
 
-    private String[][] quizOptions = {
-            {"Islamabad", "Karachi", "Lahore", "Peshawar"},
-            {"1947", "1950", "1965", "1971"},
-            {"Allama Iqbal", "Quaid-e-Azam", "Liaquat Ali Khan", "Zulfikar Ali Bhutto"},
-            {"Urdu", "Punjabi", "Sindhi", "Pashto"},
-            {"Balochistan", "Sindh", "Punjab", "KPK"},
-            {"Liaquat Ali Khan", "Zulfikar Ali Bhutto", "Benazir Bhutto", "Ayub Khan"},
-            {"Karachi", "Islamabad", "Lahore", "Multan"},
-            {"Markhor", "Tiger", "Lion", "Leopard"},
-            {"Indus", "Jhelum", "Ravi", "Chenab"},
-            {"K2", "Nanga Parbat", "Mount Everest", "Broad Peak"}
+    private static final String[][][] QUIZ_OPTIONS = {
+            {   // Pakistan Quiz options
+                    {"Islamabad", "Karachi", "Lahore", "Peshawar"},
+                    {"1947", "1950", "1965", "1971"},
+                    {"Allama Iqbal", "Quaid-e-Azam", "Liaquat Ali Khan", "Zulfikar Ali Bhutto"},
+                    {"Urdu", "Punjabi", "Sindhi", "Pashto"},
+                    {"Balochistan", "Sindh", "Punjab", "KPK"},
+                    {"Liaquat Ali Khan", "Zulfikar Ali Bhutto", "Benazir Bhutto", "Ayub Khan"},
+                    {"Karachi", "Islamabad", "Lahore", "Multan"},
+                    {"Markhor", "Tiger", "Lion", "Leopard"},
+                    {"Indus", "Jhelum", "Ravi", "Chenab"},
+                    {"K2", "Nanga Parbat", "Mount Everest", "Broad Peak"}
+            },
+            {   // General Knowledge Quiz options
+                    {"Paris", "London", "Rome", "Berlin"},
+                    {"Harper Lee", "J.K. Rowling", "Mark Twain", "Ernest Hemingway"},
+                    {"Mercury", "Mars", "Venus", "Earth"},
+                    {"Oxygen", "Hydrogen", "Carbon", "Nitrogen"},
+                    {"Diamond", "Gold", "Iron", "Platinum"},
+                    {"Leonardo da Vinci", "Vincent van Gogh", "Pablo Picasso", "Claude Monet"},
+                    {"Nile", "Amazon", "Yangtze", "Mississippi"},
+                    {"1912", "1905", "1898", "1920"},
+                    {"Albert Einstein", "Isaac Newton", "Galileo Galilei", "Nikola Tesla"},
+                    {"Pacific", "Atlantic", "Indian", "Arctic"}
+            },
+            {   // Science Quiz options
+                    {"H2O", "CO2", "NaCl", "CH4"},
+                    {"Mars", "Jupiter", "Saturn", "Earth"},
+                    {"206", "205", "210", "200"},
+                    {"Oxygen", "Carbon Dioxide", "Nitrogen", "Hydrogen"},
+                    {"299,792 km/s", "150,000 km/s", "500,000 km/s", "1,000,000 km/s"},
+                    {"Albert Einstein", "Isaac Newton", "Galileo Galilei", "Niels Bohr"},
+                    {"100°C", "90°C", "110°C", "120°C"},
+                    {"Skin", "Liver", "Heart", "Brain"},
+                    {"Mercury", "Venus", "Earth", "Mars"},
+                    {"Covalent", "Ionic", "Metallic", "Hydrogen"}
+            }
     };
 
-    private String[] quizCorrectAnswers = {
-            "Islamabad", "1947", "Quaid-e-Azam", "Urdu", "Balochistan",
-            "Liaquat Ali Khan", "Karachi", "Markhor", "Indus", "K2"
+    private static final String[][] QUIZ_CORRECT_ANSWERS = {
+            {   // Pakistan Quiz
+                    "Islamabad", "1947", "Quaid-e-Azam", "Urdu", "Balochistan",
+                    "Liaquat Ali Khan", "Karachi", "Markhor", "Indus", "K2"
+            },
+            {   // General Knowledge Quiz
+                    "Paris", "Harper Lee", "Mercury", "Oxygen", "Diamond",
+                    "Leonardo da Vinci", "Nile", "1912", "Albert Einstein", "Pacific"
+            },
+            {   // Science Quiz
+                    "H2O", "Mars", "206", "Oxygen", "299,792 km/s",
+                    "Albert Einstein", "100°C", "Skin", "Mercury", "Covalent"
+            }
     };
 
     @Override
@@ -51,17 +117,30 @@ public class QuizActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz);
 
-        // Link the TextViews and Buttons to their XML counterparts
-        tvQuestion = findViewById(R.id.tvScore);
-        tvScore = findViewById(R.id.tvScore);  // TextView to show the score
+        tvQuestion = findViewById(R.id.tvQuestion);
+        tvScore = findViewById(R.id.tvScore);
         btnOption1 = findViewById(R.id.btnOption1);
         btnOption2 = findViewById(R.id.btnOption2);
         btnOption3 = findViewById(R.id.btnOption3);
         btnOption4 = findViewById(R.id.btnOption4);
         btnNext = findViewById(R.id.btnNext);
-        btnRestart = findViewById(R.id.btnRestart);  // New restart button
+        btnRestart = findViewById(R.id.btnRestart);
 
-        // Load the first question
+        // Retrieve quiz type from Intent
+        String quizType = getIntent().getStringExtra("quiz_type");
+
+        // Set the quiz index based on the quiz type
+        int quizIndex = 0;  // Default to Pakistan Quiz
+        if ("General Knowledge Quiz".equals(quizType)) {
+            quizIndex = 1;
+        } else if ("Science Quiz".equals(quizType)) {
+            quizIndex = 2;
+        }
+
+        // Load quiz data
+        quizQuestions = QUIZ_QUESTIONS[quizIndex];
+        quizOptions = QUIZ_OPTIONS[quizIndex];
+        quizCorrectAnswers = QUIZ_CORRECT_ANSWERS[quizIndex];
         loadQuestion();
 
         // Option buttons click listeners
@@ -102,7 +181,6 @@ public class QuizActivity extends AppCompatActivity {
         });
     }
 
-    // Load the current question and options
     private void loadQuestion() {
         tvQuestion.setText(quizQuestions[currentQuestionIndex]);
         btnOption1.setText(quizOptions[currentQuestionIndex][0]);
@@ -114,7 +192,6 @@ public class QuizActivity extends AppCompatActivity {
         correctAnswer = quizCorrectAnswers[currentQuestionIndex];
     }
 
-    // Check if the selected answer is correct
     private void checkAnswer(Button selectedButton, String selectedAnswer) {
         if (selectedAnswer.equals(correctAnswer)) {
             selectedButton.setBackgroundColor(Color.GREEN);  // Correct answer
@@ -122,13 +199,10 @@ public class QuizActivity extends AppCompatActivity {
         } else {
             selectedButton.setBackgroundColor(Color.RED);  // Wrong answer
         }
-        // Show the score in tvScore
         tvScore.setText("Score: " + score);
-        // Show the next button to proceed
         btnNext.setVisibility(View.VISIBLE);
     }
 
-    // Reset the buttons' background color for the next question
     private void resetButtons() {
         btnOption1.setBackgroundColor(Color.LTGRAY);
         btnOption2.setBackgroundColor(Color.LTGRAY);
@@ -136,7 +210,6 @@ public class QuizActivity extends AppCompatActivity {
         btnOption4.setBackgroundColor(Color.LTGRAY);
     }
 
-    // Show the result after the quiz is completed
     private void showResult() {
         tvQuestion.setText("Quiz Over! Your score is: " + score + " out of " + quizQuestions.length);
         btnOption1.setVisibility(View.GONE);
@@ -144,10 +217,9 @@ public class QuizActivity extends AppCompatActivity {
         btnOption3.setVisibility(View.GONE);
         btnOption4.setVisibility(View.GONE);
         btnNext.setVisibility(View.GONE);
-        btnRestart.setVisibility(View.VISIBLE);  // Show restart button when the quiz is over
+        btnRestart.setVisibility(View.VISIBLE);
     }
 
-    // Restart the quiz
     private void restartQuiz() {
         currentQuestionIndex = 0;
         score = 0;

@@ -10,8 +10,8 @@ android {
         applicationId "com.nawab.smartquizapp"
         minSdk 21
         targetSdk 34
-        versionCode 4
-        versionName '1.4'
+        versionCode 7
+        versionName '1.7'
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -29,6 +29,8 @@ android {
 }
 
 dependencies {
+
+    implementation 'com.google.android.gms:play-services-ads:23.3.0'
 
     implementation libs.appcompat
     implementation libs.material
