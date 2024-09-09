@@ -1,82 +1,82 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-    <TextView
-        android:id="@+id/tvScore"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Score: 0"
-        android:textSize="24sp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="16dp"/>
+    android:layout_height="match_parent"
+    xmlns:ads="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:padding="16dp">
 
     <TextView
         android:id="@+id/tvQuestion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Question"
-        android:textSize="24sp"
-        android:layout_below="@id/tvScore"
-        android:layout_marginTop="32dp"
-        android:layout_centerHorizontal="true"/>
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:layout_gravity="center"/>
+
+    <TextView
+        android:id="@+id/tvScore"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Score: 0"
+        android:textSize="16sp"
+        android:layout_gravity="center"
+        android:paddingTop="8dp"/>
 
     <Button
         android:id="@+id/btnOption1"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Option 1"
-        android:layout_below="@id/tvQuestion"
-        android:layout_marginTop="16dp"
-        android:layout_alignParentStart="true"
-        android:layout_marginStart="16dp"/>
+        android:layout_marginTop="16dp"/>
 
     <Button
         android:id="@+id/btnOption2"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Option 2"
-        android:layout_below="@id/btnOption1"
-        android:layout_marginTop="16dp"
-        android:layout_alignParentStart="true"
-        android:layout_marginStart="16dp"/>
+        android:text="Option 2"/>
 
     <Button
         android:id="@+id/btnOption3"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Option 3"
-        android:layout_below="@id/btnOption2"
-        android:layout_marginTop="16dp"
-        android:layout_alignParentStart="true"
-        android:layout_marginStart="16dp"/>
+        android:text="Option 3"/>
 
     <Button
         android:id="@+id/btnOption4"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Option 4"
-        android:layout_below="@id/btnOption3"
-        android:layout_marginTop="16dp"
-        android:layout_alignParentStart="true"
-        android:layout_marginStart="16dp"/>
+        android:text="Option 4"/>
 
     <Button
         android:id="@+id/btnNext"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Next"
-        android:layout_below="@id/btnOption4"
-        android:layout_marginTop="32dp"
-        android:layout_centerHorizontal="true"/>
+        android:visibility="gone"
+        android:layout_gravity="center"
+        android:layout_marginTop="16dp"/>
 
     <Button
         android:id="@+id/btnRestart"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Restart"
-        android:layout_below="@id/btnNext"
-        android:layout_marginTop="16dp"
-        android:layout_centerHorizontal="true"/>
+        android:visibility="gone"
+        android:layout_gravity="center"
+        android:layout_marginTop="16dp"/>
 
-</RelativeLayout>
+    <!-- Add your footer text here -->
+    <TextView
+        android:id="@+id/tvFooter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="This app produced by Muhammad Shajee Butt."
+        android:textSize="12sp"
+        android:layout_gravity="center"
+        android:layout_marginTop="350dp"
+        android:textColor="#808080"/>
+
+</LinearLayout>

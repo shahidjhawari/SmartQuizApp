@@ -6,6 +6,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
 
 public class QuizActivity extends AppCompatActivity {
 
@@ -17,6 +20,7 @@ public class QuizActivity extends AppCompatActivity {
     private String[] quizQuestions;
     private String[][] quizOptions;
     private String[] quizCorrectAnswers;
+    private AdView mAdView;
 
     // Define arrays for different quizzes
     private static final String[][] QUIZ_QUESTIONS = {
@@ -188,19 +192,19 @@ public class QuizActivity extends AppCompatActivity {
         btnOption3.setText(quizOptions[currentQuestionIndex][2]);
         btnOption4.setText(quizOptions[currentQuestionIndex][3]);
         btnNext.setVisibility(View.GONE);  // Hide the next button until an answer is selected
-        btnRestart.setVisibility(View.GONE);  // Hide the restart button initially
-        correctAnswer = quizCorrectAnswers[currentQuestionIndex];
+        btnRestart.setVisibility(View.GONE);  // Hide restart button initially
     }
 
     private void checkAnswer(Button selectedButton, String selectedAnswer) {
+        correctAnswer = quizCorrectAnswers[currentQuestionIndex];
         if (selectedAnswer.equals(correctAnswer)) {
-            selectedButton.setBackgroundColor(Color.GREEN);  // Correct answer
+            selectedButton.setBackgroundColor(Color.GREEN);
             score++;
         } else {
-            selectedButton.setBackgroundColor(Color.RED);  // Wrong answer
+            selectedButton.setBackgroundColor(Color.RED);
         }
         tvScore.setText("Score: " + score);
-        btnNext.setVisibility(View.VISIBLE);
+        btnNext.setVisibility(View.VISIBLE);  // Show the next button after answering
     }
 
     private void resetButtons() {
@@ -211,23 +215,24 @@ public class QuizActivity extends AppCompatActivity {
     }
 
     private void showResult() {
-        tvQuestion.setText("Quiz Over! Your score is: " + score + " out of " + quizQuestions.length);
+        tvQuestion.setText("Quiz Complete! Your score: " + score);
+        btnRestart.setVisibility(View.VISIBLE);  // Show restart button after quiz completion
         btnOption1.setVisibility(View.GONE);
         btnOption2.setVisibility(View.GONE);
         btnOption3.setVisibility(View.GONE);
         btnOption4.setVisibility(View.GONE);
         btnNext.setVisibility(View.GONE);
-        btnRestart.setVisibility(View.VISIBLE);
     }
 
     private void restartQuiz() {
-        currentQuestionIndex = 0;
         score = 0;
+        currentQuestionIndex = 0;
+        loadQuestion();
+        resetButtons();
         btnOption1.setVisibility(View.VISIBLE);
         btnOption2.setVisibility(View.VISIBLE);
         btnOption3.setVisibility(View.VISIBLE);
         btnOption4.setVisibility(View.VISIBLE);
-        loadQuestion();
-        resetButtons();
+        tvScore.setText("Score: " + score);
     }
 }
