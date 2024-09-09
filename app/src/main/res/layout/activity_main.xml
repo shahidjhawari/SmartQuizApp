@@ -1,20 +1,26 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ads="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center"
-    android:orientation="vertical">
+    android:padding="16dp">
 
-    <TextView
-        android:id="@+id/tvWelcome"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Welcome to Smart Quiz App"
-        android:textSize="24sp"
-        android:textAlignment="center" />
-
+    <!-- Your other UI elements -->
     <Button
         android:id="@+id/btnGetStarted"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Get Started" />
-</LinearLayout>
+        android:text="Get Started"
+        android:layout_centerInParent="true"
+    android:layout_marginTop="16dp"/>
+
+    <!-- AdView at the very bottom -->
+    <com.google.android.gms.ads.AdView
+        android:id="@+id/adView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        ads:adSize="BANNER"
+        ads:adUnitId="ca-app-pub-3634516383748300/6863028141"
+    android:layout_alignParentBottom="true"
+    android:layout_centerHorizontal="true"/>
+</RelativeLayout>
