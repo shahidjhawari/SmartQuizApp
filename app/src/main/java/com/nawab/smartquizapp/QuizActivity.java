@@ -121,6 +121,15 @@ public class QuizActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz);
 
+        // Initialize Mobile Ads SDK
+        MobileAds.initialize(this, initializationStatus -> {});
+
+        // Load the banner ad
+        AdView adView = findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        adView.loadAd(adRequest);
+
+        // Initialize UI elements
         tvQuestion = findViewById(R.id.tvQuestion);
         tvScore = findViewById(R.id.tvScore);
         btnOption1 = findViewById(R.id.btnOption1);
@@ -191,48 +200,57 @@ public class QuizActivity extends AppCompatActivity {
         btnOption2.setText(quizOptions[currentQuestionIndex][1]);
         btnOption3.setText(quizOptions[currentQuestionIndex][2]);
         btnOption4.setText(quizOptions[currentQuestionIndex][3]);
-        btnNext.setVisibility(View.GONE);  // Hide the next button until an answer is selected
-        btnRestart.setVisibility(View.GONE);  // Hide restart button initially
     }
 
     private void checkAnswer(Button selectedButton, String selectedAnswer) {
-        correctAnswer = quizCorrectAnswers[currentQuestionIndex];
+        String correctAnswer = quizCorrectAnswers[currentQuestionIndex];
         if (selectedAnswer.equals(correctAnswer)) {
             selectedButton.setBackgroundColor(Color.GREEN);
             score++;
         } else {
             selectedButton.setBackgroundColor(Color.RED);
+            // Highlight the correct answer
+            highlightCorrectAnswer();
         }
-        tvScore.setText("Score: " + score);
-        btnNext.setVisibility(View.VISIBLE);  // Show the next button after answering
+        btnNext.setVisibility(View.VISIBLE);
+    }
+
+    private void highlightCorrectAnswer() {
+        Button[] buttons = {btnOption1, btnOption2, btnOption3, btnOption4};
+        for (Button button : buttons) {
+            if (button.getText().toString().equals(quizCorrectAnswers[currentQuestionIndex])) {
+                button.setBackgroundColor(Color.GREEN);
+            }
+        }
     }
 
     private void resetButtons() {
-        btnOption1.setBackgroundColor(Color.LTGRAY);
-        btnOption2.setBackgroundColor(Color.LTGRAY);
-        btnOption3.setBackgroundColor(Color.LTGRAY);
-        btnOption4.setBackgroundColor(Color.LTGRAY);
+        Button[] buttons = {btnOption1, btnOption2, btnOption3, btnOption4};
+        for (Button button : buttons) {
+            button.setBackgroundColor(Color.LTGRAY);
+        }
+        btnNext.setVisibility(View.INVISIBLE);
     }
 
     private void showResult() {
-        tvQuestion.setText("Quiz Complete! Your score: " + score);
-        btnRestart.setVisibility(View.VISIBLE);  // Show restart button after quiz completion
+        tvQuestion.setText("Your score: " + score);
         btnOption1.setVisibility(View.GONE);
         btnOption2.setVisibility(View.GONE);
         btnOption3.setVisibility(View.GONE);
         btnOption4.setVisibility(View.GONE);
         btnNext.setVisibility(View.GONE);
+        btnRestart.setVisibility(View.VISIBLE);
     }
 
     private void restartQuiz() {
-        score = 0;
         currentQuestionIndex = 0;
+        score = 0;
         loadQuestion();
-        resetButtons();
         btnOption1.setVisibility(View.VISIBLE);
         btnOption2.setVisibility(View.VISIBLE);
         btnOption3.setVisibility(View.VISIBLE);
         btnOption4.setVisibility(View.VISIBLE);
-        tvScore.setText("Score: " + score);
+        btnNext.setVisibility(View.INVISIBLE);
+        btnRestart.setVisibility(View.GONE);
     }
 }

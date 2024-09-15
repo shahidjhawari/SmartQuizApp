@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ads="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:ads="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:gravity="center"
     android:padding="16dp">
@@ -68,7 +68,7 @@
         android:layout_gravity="center"
         android:layout_marginTop="16dp"/>
 
-    <!-- Add your footer text here -->
+    <!-- Footer Text -->
     <TextView
         android:id="@+id/tvFooter"
         android:layout_width="wrap_content"
@@ -76,7 +76,17 @@
         android:text="This app produced by Muhammad Shajee Butt."
         android:textSize="12sp"
         android:layout_gravity="center"
-        android:layout_marginTop="350dp"
+        android:layout_marginTop="16dp"
         android:textColor="#808080"/>
+
+    <!-- Banner Ad -->
+    <com.google.android.gms.ads.AdView
+        android:id="@+id/adView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        ads:adSize="BANNER"
+        ads:adUnitId="ca-app-pub-3634516383748300/5940898529"
+        android:layout_gravity="center"
+        android:layout_marginTop="200dp"/>
 
 </LinearLayout>
