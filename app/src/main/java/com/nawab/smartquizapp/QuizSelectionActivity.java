@@ -76,7 +76,7 @@ public class QuizSelectionActivity extends AppCompatActivity {
     private void loadInterstitialAd() {
         AdRequest adRequest = new AdRequest.Builder().build();
 
-        InterstitialAd.load(this, "ca-app-pub-3634516383748300/2148993175", adRequest,
+        InterstitialAd.load(this, "ca-app-pub-6150248543747939/3794183119", adRequest,
                 new InterstitialAdLoadCallback() {
                     @Override
                     public void onAdLoaded(@NonNull InterstitialAd interstitialAd) {

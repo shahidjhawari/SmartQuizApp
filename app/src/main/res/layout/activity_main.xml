@@ -20,7 +20,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         ads:adSize="BANNER"
-        ads:adUnitId="ca-app-pub-3634516383748300/6863028141"
+        ads:adUnitId="ca-app-pub-6150248543747939/7910083177"
     android:layout_alignParentBottom="true"
     android:layout_centerHorizontal="true"/>
 </RelativeLayout>
